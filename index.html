@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- https://onetimes -->
+
+    <title>Gülbahçe Burger</title>
+    <link rel="stylesheet" type="text/css" href="style-light.css" id="css-file">
+</head>
+<body>
+    <header id="header">
+        <h2 id="title">Gülbahçe Burger</h2>
+        <div id="links-div">    
+            <a href="#0" id="about-us-link">About Us</a>
+            <a href="#0" id="switch-mode-link">Switch to Dark Mode</a>
+        </div>
+    </header>
+
+    <div id="about-box" style="display: none;">
+        <p>About Us:</p>
+        <p>Gülbahçe Burger is a fast food joint in Urla/İzmir. It opened for business in 2023.</p>
+    </div>
+
+    <div id="contents">
+        <div id="personalize-div">
+            <p id="greeting">Please enter your name for a personalized experience: <input id="name" type="text"></input> <button id="submit-btn" disabled>Submit</button></p>
+        </div>
+    
+        <div id="menu-container">
+            
+        </div>
+    </div>
+
+
+    <footer>
+        <a href="#0" id="contact-link">Contact Info</a>
+        <a href="#0" id="location-link">Location</a>
+        <!-- u4ilys605wn0id5vxxr4i80 -->
+    </footer>
+
+    <div id="footer-info" style="display: none;">
+
+    </div>
+
+    <script>        
+        //switching modes 
+        let mode = 'light'
+        const switchMode = document.getElementById('switch-mode-link')
+        const css = document.getElementById('css-file')
+
+        switchMode.addEventListener("click", function(){
+            if (mode == "light"){
+                mode ="dark";
+                css.setAttribute('href', 'style-dark.css')
+                switchMode.innerHTML = "Switch to Light Mode"
+            }
+            else{
+                mode ="light";
+                css.setAttribute('href', 'style-light.css')
+                switchMode.innerHTML = "Switch to Dark Mode"
+            }
+        })
+        
+        //receiving name, checking and returning if valid
+        const inputField = document.getElementById('name')
+        const submitButton = document.getElementById('submit-btn')
+        const greeting = document.getElementById('greeting')
+        
+        inputField.addEventListener('input', function() {
+            if (inputField.value.trim() === '') {
+                submitButton.disabled = true
+            } 
+            else {
+                submitButton.disabled = false
+            }
+        });
+
+        submitButton.addEventListener('click', function(){
+            const lettersOnlyRegex = /^[A-Za-z]+$/
+            if (lettersOnlyRegex.test(inputField.value)){
+                greeting.innerHTML = `Welcome, <strong>${inputField.value[0].toUpperCase()}${inputField.value.slice(1).toLowerCase()}!</strong>`
+            }
+            else{
+                inputField.value = ''
+            }
+        })
+
+        //about us 
+        const aboutDiv = document.getElementById('about-box')
+        const contents = document.getElementById('contents')
+        const aboutLink = document.getElementById('about-us-link')
+        let aboutClicked = false
+
+        aboutLink.addEventListener("click", function(){
+            console.log(aboutLink.style.color)
+            if (!aboutClicked){
+                aboutDiv.style.display = 'block'
+                contents.style.display = 'none' 
+                aboutLink.style.color = (mode == "light") ? '#EB00FF' : '#f32ffa'
+                aboutClicked = true
+            }
+            else{
+                aboutDiv.style.display = 'none'
+                contents.style.display = 'block' 
+                aboutLink.style.color = (mode == "light") ? '#001AFF' : '#00C2FF'
+                aboutClicked = false
+            }
+        })
+        
+        const footerDiv = document.getElementById("footer-info")
+
+        //contact info 
+        
+        const contactLink = document.getElementById('contact-link')
+        let contactClicked = false
+
+        contactLink.addEventListener("click", function(){
+            if (!contactClicked){
+                footerDiv.innerHTML = 
+                `
+                <div id="footer-info">
+                    <div class="contact">
+                        <img href="#" src="pictures/phone emblem.jpg" class="emblem" alt="Phone Number"/>
+                        <p> +90 123 456 7788</p>
+                    </div>
+                    <div class="contact">
+                        <img href="#" src="pictures/instagram_emblem.jpg" class="emblem" alt="Instagram"/>
+                        <p> instagram.com/gbahceburger</p>
+                    </div>
+                    <div class="contact">
+                        <img href="#" src="pictures/twitter_emblem.jpg" class="emblem" alt="Twitter"/>
+                        <p> twitter.com/gbahceburger</p>
+                    </div>
+                    <div class="contact">
+                        <img href="#" src="pictures/mail_emblem.png" class="emblem" alt="E-Mail"/>
+                        <p> gbahceburger@mail.com</p>
+                    </div>
+                </div>
+                `
+                footerDiv.style.display = 'block'
+                contactLink.style.color = (mode == "light") ? '#de2cef' : '#f32ffa'
+                locationLink.style.color = (mode == "light") ? 'blue' : '#00C2FF'
+                contactClicked = true
+                locationClicked = false
+            }
+            else {
+                footerDiv.style.display = 'none'
+                contactLink.style.color = (mode == "light") ? 'blue' : '#00C2FF'
+                contactClicked = false
+            }
+        })
+
+        //location info
+
+        const locationLink = document.getElementById('location-link')
+        let locationClicked = false
+
+        locationLink.addEventListener("click", function(){
+            if (!locationClicked){
+                footerDiv.innerHTML = 
+                `
+                <div id="footer-info">
+                    <div id="location">
+                        <p>Address:</p>
+                        <p>12087 Sk. Gülbahçe/Urla/İzmir</p>
+                    </div>
+                    <img src="pictures/fake_map_location.png" id="map" alt="Map"/>
+                </div>
+                `
+                footerDiv.style.display = 'block'
+                locationLink.style.color = (mode == "light") ? '#de2cef' : '#f32ffa'
+                contactLink.style.color = (mode == "light") ? 'blue' : '#00C2FF'
+                locationClicked = true
+                contactClicked = false
+            }
+            else{
+                footerDiv.style.display = 'none'
+                locationLink.style.color =  (mode == "light") ? 'blue' : '#00C2FF'
+                locationClicked = false
+            }
+        })
+
+
+        //fetching the menu from json file and add to window
+        const menu = document.getElementById('menu-container') 
+        
+        fetch("menu.json")
+        .then(response => response.json())
+        .then(responseJson => {  
+            let displayMenu = responseJson.map((food) => {
+                return(
+                `
+                <div class="food-card">
+                    <img src=${food.img} class="photo" alt=${food.title}/>
+                    <div class="food-desc">
+                        <h4 class="food-title">${food.title}</h4>
+                        <h4 class="food-price">${food.price} ₺</h4>
+                    </div>
+                </div>
+                `)
+            })
+  
+            displayMenu = displayMenu.join("")
+            menu.innerHTML = displayMenu})
+
+    </script>
+    
+    <!-- ecret.com/secret/6w5wp91r -->
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "title": "Cheeseburger",
+      "price": 70,
+      "img": "pictures/cheeseburger.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Onion Rings",
+      "price": 30,
+      "img": "pictures/onion_rings.jpg"
+    },
+    {
+      "id": 3,
+      "title": "French Fries",
+      "price": 25,
+      "img": "pictures/fries.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Chicken Burger",
+      "price": 60,
+      "img": "pictures/chicken_burger.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Fizzy Drink",
+      "price": 20,
+      "img": "pictures/fizzy_drink.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Water",
+      "price": 10,
+      "img": "pictures/water.jpg"
+    }
+]
